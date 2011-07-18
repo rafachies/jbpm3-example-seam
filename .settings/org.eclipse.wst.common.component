@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="jbpm3-example-seam">
+        <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main"/>
+        <wb-resource deploy-path="/WEB-INF/dev" source-path="/src/hot"/>
+        <property name="java-output-path" value="/jbpm-example/build/classes"/>
+        <property name="context-root" value="jbpm3-example-seam"/>
+    </wb-module>
+</project-modules>

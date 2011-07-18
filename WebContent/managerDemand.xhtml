@@ -1,0 +1,65 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+
+	<ui:define name="body">
+
+		<h1>Vendor Demands</h1>
+
+		<rich:dataTable var="varTask" value="#{pooledTaskInstanceList}">
+			<rich:column>
+				<f:facet name="header">Customer</f:facet>
+				<h:outputText value="#{varTask.getVariable('customer')}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Creation date</f:facet>
+				<h:outputText value="#{varTask.create}">
+					<s:convertDateTime type="both" pattern="dd/MM/yyyy hh:mm" />
+				</h:outputText>
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Task</f:facet>
+				#{varTask.name}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Action</f:facet>
+				<s:button taskInstance="#{varTask}" value="Hold demand"
+					action="#{pooledTask.assignToCurrentActor()}" />
+			</rich:column>
+		</rich:dataTable>
+		<p/>
+		<h1>My demands</h1>
+		<rich:dataTable var="varTask" value="#{taskInstanceList}">
+			<rich:column>
+				<f:facet name="header">Customer</f:facet>
+				<h:outputText value="#{varTask.getVariable('customer')}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Product</f:facet>
+				<h:outputText value="#{varTask.getVariable('product')}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Creation Date</f:facet>
+				<h:outputText value="#{varTask.create}">
+					<s:convertDateTime type="both" pattern="dd/MM/yyyy hh:mm" />
+				</h:outputText>
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Task</f:facet>
+				#{varTask.name}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Action</f:facet>
+				<s:button taskInstance="#{varTask}" value="Create Project" action="create" rendered="#{varTask.name == 'createProject'}" />
+				<s:button taskInstance="#{varTask}" value="Report Close" action="report" rendered="#{varTask.name == 'managerReport'}"/>
+			</rich:column>
+		</rich:dataTable>
+		
+
+	</ui:define>
+</ui:composition>

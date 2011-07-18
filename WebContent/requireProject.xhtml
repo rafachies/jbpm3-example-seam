@@ -1,0 +1,43 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" template="layout/template.xhtml">
+
+	<ui:define name="body">
+
+		<h:form id="projectForm">
+
+			<rich:panel>
+				<f:facet name="header">Project Requirement</f:facet>
+
+				<p>Please fill this form to require a demand</p>
+
+				<div class="dialog"><h:panelGrid columns="2" rowClasses="prop"
+					columnClasses="name,value">
+					<h:outputLabel for="demandType">Demand Type</h:outputLabel>
+					<h:selectOneMenu id="demandType" value="#{exampleProcess.demandType}">
+						<f:selectItem id="poc" itemLabel="PoC" itemValue="poc" />
+						<f:selectItem id="project" itemLabel="Project" itemValue="project" />
+					</h:selectOneMenu>
+					<h:outputLabel for="customer">Customer</h:outputLabel>
+					<h:inputText id="customer" value="#{exampleProcess.customer}" />
+					<h:outputLabel for="products">Product</h:outputLabel>
+					<h:selectOneMenu id="products" value="#{exampleProcess.product}" required="true">
+						<s:selectItems value="#{productList.getProducts()}" var="product" label="#{product.label}" noSelectionLabel="Select a product..." itemValue="#{product.label}" />
+						<!--s:convertEnum / -->
+					</h:selectOneMenu>
+				</h:panelGrid></div>
+
+			</rich:panel>
+
+			<div class="actionButtons"><h:commandButton id="submit"
+				value="Require" action="#{projectManager.require}" /></div>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

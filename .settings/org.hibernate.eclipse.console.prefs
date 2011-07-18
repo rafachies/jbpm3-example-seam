@@ -1,0 +1,4 @@
+#Thu Jun 02 10:48:58 BRT 2011
+default.configuration=jbpm-example
+eclipse.preferences.version=1
+hibernate3.enabled=true
